@@ -14,8 +14,6 @@ services:
       DATABASE_PATH: /app/data/ollama-bench.db
     volumes:
       - ollama-bench-data:/app/data
-    networks:
-      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ollama-bench.rule=Host(`ollama-bench.home`)"
@@ -24,7 +22,3 @@ services:
 
 volumes:
   ollama-bench-data:
-
-networks:
-  proxy:
-    external: true
