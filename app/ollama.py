@@ -7,14 +7,9 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 
 def get_models():
-    try:
-        resp = requests.get(f"{OLLAMA_HOST}/api/tags", timeout=5)
-        resp.raise_for_status()
-        return resp.json().get("models", [])
-    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
-        raise ConnectionError(
-            f"Could not connect to Ollama {OLLAMA_HOST}. Ensure Ollama is running."
-        ) from e
+    resp = requests.get(f"{OLLAMA_HOST}/api/tags", timeout=5)
+    resp.raise_for_status()
+    return resp.json().get("models", [])
 
 
 def pull_model(model_name):
