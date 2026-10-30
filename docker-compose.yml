@@ -1,24 +1,16 @@
 services:
   ollama-bench:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: ollama-bench
     restart: unless-stopped
     ports:
-      - "16789:8000"
-    env_file:
-      - .env
+      - "8000:8000"
     environment:
       PYTHONUNBUFFERED: "1"
-      DATABASE_PATH: /app/data/ollama-bench.db
+      OLLAMA_HOST: ${OLLAMA_HOST:-http://host.docker.internal:11434}
+      DB_PATH: /app/data/ollama-bench.db
     volumes:
       - ollama-bench-data:/app/data
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.ollama-bench.rule=Host(`ollama-bench.home`)"
-      - "traefik.http.routers.ollama-bench.entrypoints=web"
-      - "traefik.http.services.ollama-bench.loadbalancer.server.port=8000"
 
 volumes:
   ollama-bench-data:
