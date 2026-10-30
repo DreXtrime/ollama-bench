@@ -1,5 +1,7 @@
 # ollama-bench
 
+![demo image](docs/image-1.png)
+
 `ollama-bench` is a small tool I built for me to easily compare multiple LLM models through [Ollama](https://ollama.com). It lets you define a set of prompts, run them against different locally available models, and compare their responses and performance.
 
 The project was also primarily built with the help of the AI models that it was made to test. The code is therefore largely put together by those models.
